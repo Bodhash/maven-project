@@ -8,10 +8,8 @@ pipeline
 
      stage ('compile the code')
      { steps { withMaven(globalMavenSettingsConfig: '', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: '', traceability: true) 
-     { sh 'mvn compile' } 
-      }}
+       sh 'mvn compile'     
+    }
+ }}
 
-  }
 
-
-}
