@@ -7,9 +7,19 @@ pipeline
     { steps {  git 'https://github.com/Bodhash/maven-project' } }
 
      stage ('compile the code')
-     { steps { withMaven(globalMavenSettingsConfig: '', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: '', traceability: true) 
-        sh 'mvn compile'     
-    }
- }}
+     { steps { withMaven(globalMavenSettingsConfig: 'a944d01f-8199-49a7-9e8a-954767180916', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: 'c81b7148-6f17-4e0e-a892-e5b9bd00e949', traceability: true) 
+    {sh 'mvn compile'}
+     }}
+
+    stage ('generate deployable package')
+     {steps { withMaven(globalMavenSettingsConfig: 'a944d01f-8199-49a7-9e8a-954767180916', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: 'c81b7148-6f17-4e0e-a892-e5b9bd00e949', traceability: true) {
+    {sh 'mvn package'}
+      } }
+
+
+ }
+
+
+}
 
 
