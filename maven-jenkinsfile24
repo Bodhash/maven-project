@@ -6,11 +6,12 @@ pipeline
     stage ('scm checkout for download code')
     { steps {  git 'https://github.com/Bodhash/maven-project' } }
 
+     stage ('compile the code')
+     { steps { withMaven(globalMavenSettingsConfig: '', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: '', traceability: true) 
+     { sh 'mvn compile' } 
+      }}
+
   }
-
-
-
-
 
 
 }
