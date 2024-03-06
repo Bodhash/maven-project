@@ -19,3 +19,4 @@ stage ('sonar analysis and build')
 }
 
 }
+}
