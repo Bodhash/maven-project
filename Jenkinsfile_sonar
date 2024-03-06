@@ -7,13 +7,13 @@ stage ('git checkout')
 {steps { git branch: 'master', url: 'https://github.com/Bodhash/maven-project' } } 
 
 stage ('unit test execution')
-{steps {sh 'withMaven(globalMavenSettingsConfig: 'a944d01f-8199-49a7-9e8a-954767180916', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: 'c81b7148-6f17-4e0e-a892-e5b9bd00e949', traceability: true') {
+{steps {sh 'withMaven(globalMavenSettingsConfig: '20d506da-81ad-4102-b148-757c3628fcac', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: 'debea6c3-0374-4319-931c-7f5ce55b2adb', traceability: true') {
 {sh ''mvn test'}
 
 }}
 
 stage ('sonar analysis and build')
-{steps { withMaven(sh 'globalMavenSettingsConfig: 'a944d01f-8199-49a7-9e8a-954767180916', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: 'c81b7148-6f17-4e0e-a892-e5b9bd00e949', traceability: true') {
+{steps { sh 'withMaven(globalMavenSettingsConfig: '20d506da-81ad-4102-b148-757c3628fcac', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: 'debea6c3-0374-4319-931c-7f5ce55b2adb', traceability: true') {
 {sh ''mvn package'}
 
 }}
