@@ -8,18 +8,17 @@ stage ('git checkout')
  {steps { git branch: 'master', url: 'https://github.com/Bodhash/maven-project' } } 
 
 stage ('unit test execution')
- {steps 
-   {'withMaven(globalMavenSettingsConfig: '20d506da-81ad-4102-b148-757c3628fcac', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: 'debea6c3-0374-4319-931c-7f5ce55b2adb', traceability: true'} }
+ {steps {'withMaven(globalMavenSettingsConfig: '20d506da-81ad-4102-b148-757c3628fcac', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: 'debea6c3-0374-4319-931c-7f5ce55b2adb', traceability: true'} }
      {sh 'mvn test'}
 
 stage ('sonar analysis and build')
- {steps 
-   {'withMaven(globalMavenSettingsConfig: '20d506da-81ad-4102-b148-757c3628fcac', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: 'debea6c3-0374-4319-931c-7f5ce55b2adb', traceability: true'} }
+ {steps {'withMaven(globalMavenSettingsConfig: '20d506da-81ad-4102-b148-757c3628fcac', jdk: 'LocalJDK', maven: 'LocalMVN', mavenSettingsConfig: 'debea6c3-0374-4319-931c-7f5ce55b2adb', traceability: true'} }
      {sh 'mvn package' }  
 
  stage ('deploy to dev tomcat')
   {steps {sshagent('dev tomcat')
     {steps { sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@53.66.32.148:/usr/share/tomcat/webapps/'}
+    
   }}} 
  
  }
